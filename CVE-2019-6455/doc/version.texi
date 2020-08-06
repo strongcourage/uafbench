@@ -1,0 +1,4 @@
+@set UPDATED 3 January 2019
+@set UPDATED-MONTH January 2019
+@set EDITION 1.8
+@set VERSION 1.8

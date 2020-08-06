@@ -1,0 +1,191 @@
+This NEWS file records noteworthy changes, very tersely.
+See the manual for detailed information.
+
+  Copyright 2010-2019 Jose E. Marchesi.
+
+  Copying and distribution of this file, with or without modification,
+  are permitted in any medium without royalty provided the copyright
+  notice and this notice are preserved.
+
+ Version 1.8 (3 January 2019)
+* Utilities:
+  . Fix the build of readrec with recent bash headers.
+* librec:
+  . Fix evaluation of sexes containing #NAME expressions.
+  . Make numeric results from aggregated functions signed.
+* readred:
+  . readrec --help now shows the help message and returns,
+    instead of waiting for input.
+* Emacs mode:
+  . rec-mode.el now supports case-insensitive searches.
+  . rec-mode.el now defines it's own faces.
+  . ob-rec.el was switched to lexical binding to satisfy later
+    org-mode versions.
+* It is now possible to run the testsuite in parallel.
+* Other fixes:
+  . gnulib updated.
+  . GNU/Hurd build fixed.
+  . Aggregate functions now work properly in Aarch64 and powerpc.
+
+ Version 1.7 (25 March 2014)
+* Utilities:
+  . rec2csv now supports a -d option to change the delimiter
+    character in CSV files.
+  . It is now possible to specify several recfiles in the
+    command line containing anonymous records.
+* Format:
+  . Support for restricting the fields that can appear in records
+    with the new %allowed special field.
+  . If a tab separates a field name and a field value is now
+    ignored and not considered part of the field value.
+* librec:
+  . The current version of the library is now 1.
+* Emacs mode:
+  . It now possible to jump several records while navigating
+    using a prefix argument to the next/previous commands.
+* Documentation:
+  . The examples in the manual have been improved, and well as many
+    other aspects: formatting, English, etc.  Special thanks to Karl
+    Berry for pointing out the problems and suggesting solutions.
+* Internal cleanup and code factorization.
+* Many, many, many bug fixes :D
+
+ Version 1.6 (03 November 2013)
+* Utilities:
+  . Support for joins and foreign keys.
+  . Grouping records by one or more fields.
+  . Sorting recors by several fields.
+  . Specifying rewrite rules in field expressions.
+  . Writing field values in rows.
+  . Dot-notation in selection expressions.
+  . Support for the >= and <= operators in selection expressions.
+  . Aggregated functions: sum, min, max, avg.
+  . New bash loadable builtin `readrec'.
+* Format:
+  . New UUID field type.
+  . User provided arbitrary constraints with %constraint.
+  . Pre-defined constants MIN and MAX can now be used in ranges.
+* librec:
+  . New high-level API: rec_db_query, rec_db_insert, rec_db_delete and
+    rec_db_set.
+  . Documentation in the rec.h header file extended and improved.
+* Emacs mode:
+  . Texinfo manual describing the usage of rec-mode.
+  . Support for a mode hook.
+  . Comments are now supported in records.
+  . add-change-log-entry in a recfile now does the right thing.
+  . Commands for copying/killing fields and records.
+  . Support for undo in navigation mode.
+  . Field folding.
+  . Editing methods for the several field types.
+  . Statistics.
+* Documentation:
+  . The user manual has been restructured and expanded.
+* Internal cleanup and code factorization.
+* Many, many, many bug fixes :D
+
+ Version 1.5 (13 January 2012)
+* The utilities will now ask interactively for a password if it was
+  not provided with the -s command line option.  This avoids security
+  problems related to shell history files.
+* Support for octal and hexadecimal numbers has been added.  They can
+  be used in both the records and selection expressions.
+* It is now possible to select a given number of random records in
+  many of the utilities using the -m command line option.
+* The -n option now accepts a list of indexes, supporting ranges.
+* The new -U (uniq) option for recsel removes duplicated fields in the
+  output records.
+* The new -q (quick) option allows to quickly search for the desired
+  record without having to provide a complete selection expression.
+* Auto generated fields are now considered integers by default.  This
+  avoids repetitive patterns in record descriptors involving %auto and
+  %type.
+* Tab characters are now allowed in blank lines betwwen records.
+* The API in rec.h is now better documented with comments, and
+  improved.
+* recfix now exits with an error status if there is a parse error in
+  some input file.
+* The usage of the internal data structures has been _vastly_
+  improved, resulting in a much faster operation.
+* Internal cleanup and code factorization.
+* Many, many, many bug fixes :D
+
+ Version 1.4 (03 November 2011)
+* Support for encryption with the new %confidential special field.
+* Support for named types with the new %typedef special field.
+* Support for sorting with the new %sort special field.
+* Recutils support for org-babel is now included in the distribution
+  as ob-rec.el.  It allows to read rec data into org documents in both
+  raw and table formats.
+* It is now possible to use double quotes for delimiting string
+  literals in selection expressions, as well as single quotes.
+  Unescapted newline characters are also supported.
+* The manual has been vastly improved.
+* recfix now supports several operations: check, sort, encrypt and
+  decrypt.
+* recins now generates parseable locale independent dates when
+  generating time-stamps in auto-fields.
+* Lots of bug fixes.
+
+ Version 1.3 (11 February 2011)
+* A quite bad (and embarrassing) bug introduced in 1.2 has been
+  fixed.  The bug was causing recins, recdel and recset to report
+  random integrity failures, due to a uninitialized variable.
+* New special field %size, that allows to define constraints in the
+  size of record sets.
+* Several fixes in the user manual.
+* Little portability issue that prevented one of the tests to compile
+  in macos x has been fixed.
+* Translations updates.
+
+ Version 1.2 (4 February 2011)
+* New utility rec2csv, to export rec data to csv files.
+* Support for auto-incremented fields and timestamps with the new
+  %auto field in record descriptors.
+* Support for comments in enum type descriptions.
+* recset now supports a new "set or add field" operation, implementing
+  the common case of setting the value of a field in case it exists,
+  or else add it to the record.
+* The flavor of regular expressions accepted in both selection
+  expressions and type descriptions is now documented in the user
+  manual.
+* Translations for German, Finnish, Swedish and Dutch.
+* recdel now performs an integrity check before to complete the
+  deletion.
+* The utilities no longer "expand" the contents of remote descriptors
+  in the local ones.
+* recset and recins no longer destroy the permissions of the rec file
+  that is being modified.
+* Many fixes in the documentation.
+* Lots of bug fixes.
+
+ Version 1.1 (24 December 2010)
+* New utility recfmt, to format records based on templates.
+* Improvements in selection expressions:
+  . Support ranges in field subscripts.
+  . New date operators: before (<<), after (>>) and sametime (==).
+  . New ternary conditional operator (?:).
+  . New string concatenation operator (&).
+* libcsv is now embedded in the source distribution, so it is no
+  longer required to have it installed to build csv2rec.
+* Portability problems fixed.  The programs have been tested in the
+  following systems:
+  . GNU/Linux
+  . FreeBSD 6.4
+  . MacOS X
+  . mingw32
+  . Solaris 8
+  . AIX 5.1
+  . HP-UX 11.00
+  . IRIX 6.5
+  . Tru64 (OSF/1 5.1)
+  . Cygwin 1.7
+* Lots of bug fixes.
+
+ Version 1.0 (3 December 2010)
+* Initial release.
+  . User manual.
+  . Library (librec).
+  . Utilities: recinf, recsel, recins, recdel, recset, recfix, csv2rec,
+    mdb2rec.
+  . Experimental Emacs mode (rec-mode.el).

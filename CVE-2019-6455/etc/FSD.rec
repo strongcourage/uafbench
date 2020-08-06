@@ -1,0 +1,37 @@
+# FSD.rec - Record descriptor for FSD entries
+#
+# This file contains the record descriptor for entries in the Free
+# Software Directory.
+#
+# The canonical location of this file is
+# http://www.jemarch.net/downloads/FSD.rec
+
+# Copyright (C) 2010 Jose E. Marchesi
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+%rec: FSD_Entry
+%mandatory: Title
+%type: Title line
+%type: GNU bool
+%type: MaturityLevel enum
++ Undefined Planning PreAlpha Alpha Beta
++ Production Mature Orphaned
+%type: License enum
++ GPLv2 GPLv2PLUS GPLv3 GPLv3PLUS
++ GFDLv21PLUS
+%type: InterfaceStyle enum
++ CommandLine Console Daemon XWindow Web Email
+
+# End of FSD.rec

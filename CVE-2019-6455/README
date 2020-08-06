@@ -1,0 +1,54 @@
+This is the README file for the GNU recutils distribution.
+The GNU recutils are a set of libraries and utilities supporting the
+Rec format: a human-readable, text-based format to store little to
+medium sized databases.
+
+  Copyright (C) 1992, 1993, 1995, 1996, 1997, 1998, 1999, 2000, 2001,
+  2002, 2004, 2005, 2006, 2010 Free Software Foundation, Inc.
+  Copyright (C) 2010-2018 Jose E. Marchesi
+
+  Copying and distribution of this file, with or without modification,
+  are permitted in any medium without royalty provided the copyright
+  notice and this notice are preserved.
+
+See the files ./INSTALL* for building and installation instructions.
+
+Primary distribution point: ftp://ftp.gnu.org/gnu/recutils/
+ automatic redirection: http://ftpmirror.gnu.org/recutils
+ list of mirrors for manual selection: http://www.gnu.org/prep/ftp.html
+
+Home page: http://www.gnu.org/software/recutils/
+
+Mailing list: bug-recutils@gnu.org
+- please use this list for all discussion: bug reports, enhancements, etc.
+- archived at: http://lists.gnu.org/pipermail/bug-recutils
+- anyone is welcome to join the list; to do so, visit
+  http://lists.gnu.org/mailman/listinfo/bug-recutils
+- there is no corresponding newsgroup.
+
+Bug reports:
+ Please include enough information for the maintainers to reproduce the
+ problem.  Gnerally speaking, that means:
+- the contents of any input files necessary to reproduce the bug
+  and command line invocations of the program(s) involved (crucial!).
+- a description of the problem and any samples of the erroneous output.
+- the version number of the program(s) involved (use --version).
+- hardware, operating system, and compiler versions (uname -a).
+- unusual options you gave to configure, if any (see config.status).
+- anything else that you think would be helpful.
+
+Patches are most welcome; if possible, please make them with diff -c and
+include ChangeLog entries.
+
+See README-dev for information on the development environment -- any
+interested parties are welcome.  If you're a programmer and wish to
+contribute, this should get you started.  If you're not a programmer,
+your help in writing test cases, checking the documentation against the
+implementation, translating the program strings to other languages,
+etc., would still be very much appreciated.
+
+GNU Recutils is free software.  See the file COPYING for copying conditions.
+
+For any copyright year range specified as YYYY-ZZZZ in this package
+note that the range specifies every single year in that closed
+interval.

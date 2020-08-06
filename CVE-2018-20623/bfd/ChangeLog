@@ -1,0 +1,46 @@
+2019-01-08  Alan Modra  <amodra@gmail.com>
+
+	PR 23699
+	PR 24065
+	* ihex.c (ihex_write_object_contents): Properly check 32-bit
+	address range.
+
+2019-01-05  Yoshinori Sato <ysato@users.sourceforge.jp>
+
+	* bfd/archures.c: Add bfd_mach_rx_v2 and bfd_mach_rx_v3.
+	* bfd/bfd-in2.h: Regenerate.
+	* bfd/cpu-rx.c (arch_info_struct): Add RXv2 and RXv3 entry.
+	* bfd/elf32-rx.c (elf32_rx_machine): Add RXv2 and RXv3 support.
+
+2019-01-04  Lifang Xia  <lifang_xia@c-sky.com>
+
+	* config.bfd (csky-*-elf* | csky-*-linux*): Modify the csky
+	default target, little endian target is more suitable.
+
+2019-01-04  Alan Modra  <amodra@gmail.com>
+
+	PR 24061
+	PR 21786
+	* coff-rs6000.c (GET_VALUE_IN_FIELD): Add base parameter and
+	adjust all callers.
+	(EQ_VALUE_IN_FIELD): Likewise.
+	* coff64-rs6000.c (GET_VALUE_IN_FIELD): Likewise.
+
+2019-01-01  Alan Modra  <amodra@gmail.com>
+
+	Update year range in copyright notice of all files.
+
+For older changes see ChangeLog-2018
+
+Copyright (C) 2019 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Local Variables:
+mode: change-log
+left-margin: 8
+fill-column: 74
+version-control: never
+End:

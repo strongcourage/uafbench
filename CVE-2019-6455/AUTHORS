@@ -1,0 +1,21 @@
+# -*- mode: rec -*-
+
+# This file contains the names of the people that contributed with
+# code and/or documentation to GNU recutils.
+
+Name: Jose E. Marchesi
+Email: jemarch@gnu.org
+
+Name: Ralf Wildenhues
+Email: Ralf.Wildenhues@gmx.de
+
+Name: Daiki Ueno
+Email: ueno@unixuser.org
+
+Name: John Darrington
+Email: john@darrington.wattle.id.au
+
+Name: Michał Masłowski
+Email: mtjm@mtjm.eu
+
+# End of AUTHORS

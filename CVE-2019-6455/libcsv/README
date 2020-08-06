@@ -1,0 +1,7 @@
+This directory contains a copy of the libcsv library, extracted from
+libcsv-3.0.0.tar.gz.  It contains some modifications.
+
+The homepage for libcsv is at http://libcsv.sf.net
+
+Note that this copy has been relicensed to GPLv3 as per terms of the
+LGPL 2.1.

@@ -1,0 +1,185 @@
+2019-01-08  Kyrylo Tkachov  <kyrylo.tkachov@arm.com>
+
+	* config/tc-aarch64.c (aarch64_cpus): Add ares.
+	* doc/c-aarch64.texi (-mcpu): Document ares value.
+
+2019-01-08  Alan Modra  <amodra@gmail.com>
+
+	* testsuite/gas/rx/rx.exp: Create generated test source in
+	current directory.
+	* testsuite/gas/rx/Xtod.d, * testsuite/gas/rx/abs.d,
+	* testsuite/gas/rx/adc.d, * testsuite/gas/rx/add.d,
+	* testsuite/gas/rx/and.d, * testsuite/gas/rx/bclr.d,
+	* testsuite/gas/rx/bcnd.d, * testsuite/gas/rx/bfmov.d,
+	* testsuite/gas/rx/bmcnd.d, * testsuite/gas/rx/bnot.d,
+	* testsuite/gas/rx/bra.d, * testsuite/gas/rx/brk.d,
+	* testsuite/gas/rx/bset.d, * testsuite/gas/rx/bsr.d,
+	* testsuite/gas/rx/btst.d, * testsuite/gas/rx/clrpsw.d,
+	* testsuite/gas/rx/cmp.d, * testsuite/gas/rx/dabs.d,
+	* testsuite/gas/rx/dadd.d, * testsuite/gas/rx/dbt.d,
+	* testsuite/gas/rx/dcmp.d, * testsuite/gas/rx/ddiv.d,
+	* testsuite/gas/rx/div.d, * testsuite/gas/rx/divu.d,
+	* testsuite/gas/rx/dmov.d, * testsuite/gas/rx/dmul.d,
+	* testsuite/gas/rx/dneg.d, * testsuite/gas/rx/dpopm.d,
+	* testsuite/gas/rx/dpushm.d, * testsuite/gas/rx/dround.d,
+	* testsuite/gas/rx/dsqrt.d, * testsuite/gas/rx/dsub.d,
+	* testsuite/gas/rx/dtoX.d, * testsuite/gas/rx/emaca.d,
+	* testsuite/gas/rx/emsba.d, * testsuite/gas/rx/emul.d,
+	* testsuite/gas/rx/emula.d, * testsuite/gas/rx/emulu.d,
+	* testsuite/gas/rx/fadd.d, * testsuite/gas/rx/fcmp.d,
+	* testsuite/gas/rx/fdiv.d, * testsuite/gas/rx/fmul.d,
+	* testsuite/gas/rx/fsqrt.d, * testsuite/gas/rx/fsub.d,
+	* testsuite/gas/rx/ftoi.d, * testsuite/gas/rx/ftou.d,
+	* testsuite/gas/rx/gprel.d, * testsuite/gas/rx/int.d,
+	* testsuite/gas/rx/itof.d, * testsuite/gas/rx/jmp.d,
+	* testsuite/gas/rx/jsr.d, * testsuite/gas/rx/machi.d,
+	* testsuite/gas/rx/maclh.d, * testsuite/gas/rx/maclo.d,
+	* testsuite/gas/rx/max.d, * testsuite/gas/rx/min.d,
+	* testsuite/gas/rx/mov.d, * testsuite/gas/rx/movco.d,
+	* testsuite/gas/rx/movli.d, * testsuite/gas/rx/movu.d,
+	* testsuite/gas/rx/msbhi.d, * testsuite/gas/rx/msblh.d,
+	* testsuite/gas/rx/msblo.d, * testsuite/gas/rx/mul.d,
+	* testsuite/gas/rx/mulhi.d, * testsuite/gas/rx/mullh.d,
+	* testsuite/gas/rx/mullo.d, * testsuite/gas/rx/mvfacgu.d,
+	* testsuite/gas/rx/mvfachi.d, * testsuite/gas/rx/mvfaclo.d,
+	* testsuite/gas/rx/mvfacmi.d, * testsuite/gas/rx/mvfc.d,
+	* testsuite/gas/rx/mvfcp.d, * testsuite/gas/rx/mvfdc.d,
+	* testsuite/gas/rx/mvfdr.d, * testsuite/gas/rx/mvtacgu.d,
+	* testsuite/gas/rx/mvtachi.d, * testsuite/gas/rx/mvtaclo.d,
+	* testsuite/gas/rx/mvtc.d, * testsuite/gas/rx/mvtcp.d,
+	* testsuite/gas/rx/mvtdc.d, * testsuite/gas/rx/neg.d,
+	* testsuite/gas/rx/nop.d, * testsuite/gas/rx/not.d,
+	* testsuite/gas/rx/opecp.d, * testsuite/gas/rx/or.d,
+	* testsuite/gas/rx/pop.d, * testsuite/gas/rx/popc.d,
+	* testsuite/gas/rx/popm.d, * testsuite/gas/rx/push.d,
+	* testsuite/gas/rx/pushc.d, * testsuite/gas/rx/pushm.d,
+	* testsuite/gas/rx/r-bcc.d, * testsuite/gas/rx/r-bra.d,
+	* testsuite/gas/rx/racl.d, * testsuite/gas/rx/racw.d,
+	* testsuite/gas/rx/rdacl.d, * testsuite/gas/rx/rdacw.d,
+	* testsuite/gas/rx/revl.d, * testsuite/gas/rx/revw.d,
+	* testsuite/gas/rx/rmpa.d, * testsuite/gas/rx/rolc.d,
+	* testsuite/gas/rx/rorc.d, * testsuite/gas/rx/rotl.d,
+	* testsuite/gas/rx/rotr.d, * testsuite/gas/rx/round.d,
+	* testsuite/gas/rx/rstr.d, * testsuite/gas/rx/rte.d,
+	* testsuite/gas/rx/rtfi.d, * testsuite/gas/rx/rts.d,
+	* testsuite/gas/rx/rtsd.d, * testsuite/gas/rx/sat.d,
+	* testsuite/gas/rx/satr.d, * testsuite/gas/rx/save.d,
+	* testsuite/gas/rx/sbb.d, * testsuite/gas/rx/sccnd.d,
+	* testsuite/gas/rx/scmpu.d, * testsuite/gas/rx/setpsw.d,
+	* testsuite/gas/rx/shar.d, * testsuite/gas/rx/shll.d,
+	* testsuite/gas/rx/shlr.d, * testsuite/gas/rx/smovb.d,
+	* testsuite/gas/rx/smovf.d, * testsuite/gas/rx/smovu.d,
+	* testsuite/gas/rx/sstr.d, * testsuite/gas/rx/stnz.d,
+	* testsuite/gas/rx/stz.d, * testsuite/gas/rx/sub.d,
+	* testsuite/gas/rx/suntil.d, * testsuite/gas/rx/swhile.d,
+	* testsuite/gas/rx/tst.d, * testsuite/gas/rx/utof.d,
+	* testsuite/gas/rx/wait.d, * testsuite/gas/rx/xchg.d,
+	* testsuite/gas/rx/xor.d: Add #source line.
+
+2019-01-07  Kyrylo Tkachov  <kyrylo.tkachov@arm.com>
+
+	* config/tc-arm.c (arm_cpus): Add ares.
+	* doc/c-arm.texi (-mcpu): Document ares value.
+
+2019-01-05  Yoshinori Sato  <ysato@users.sourceforge.jp>
+
+	* config/rx-defs.h (rx_cpu_types): Add type RXV3 and RXV3FPU.
+	(rx_bfield): Add prototype.
+	(rx_post): Likewise.
+	* config/rx-parse.y: Add v3 instructions and Double FPU registers.
+	(DSIZE): Define.
+	(POST): Define.
+	(rx_check_v3): New. check v3 type.
+	(rx_check_dfpu): New. check have double support.
+	(double_condition_table): New. dcmp<cond> contiditon.
+	(check_condition): Multiple condition support.
+	(rx_lex): RXv3 instructions support.
+	Add parse dcmp<cond> instruction and Double FPU registers.
+	(immediate): Disable optimize in dmov #imm case.
+	(displacement): Add double displacement in dmov instraction.
+	* config/tc-rx.c (rx_use_conventional_section_names):
+	Invert default value in rx-*-linux target.
+	(cpu_type): Add additional ELF flags.
+	(cpu_type_list): Add RXv3.
+	(md_parse_option): Refer elf_flags from cpu_type_list.
+	(md_show_usage): Add rxv3 and rxv3-dfpu.
+	(rx_bytesT): Add post byte.
+	(rx_bfield): New. generate bfmov / bfmovz "imm" field.
+	(rx_post): New. Set instruction post byte.
+	(md_assemble): Add post byte.
+	doc/c-rx.texi: Add cpu types.
+	* testsuite/gas/rx/Xtod.d: New.
+	* testsuite/gas/rx/Xtod.sm: New.
+	* testsuite/gas/rx/bfmov.d: New.
+	* testsuite/gas/rx/bfmov.sm: New.
+	* testsuite/gas/rx/dabs.d: New.
+	* testsuite/gas/rx/dabs.sm: New.
+	* testsuite/gas/rx/dadd.d: New.
+	* testsuite/gas/rx/dadd.sm: New.
+	* testsuite/gas/rx/dcmp.d: New.
+	* testsuite/gas/rx/dcmp.sm: New.
+	* testsuite/gas/rx/ddiv.d: New.
+	* testsuite/gas/rx/ddiv.sm: New.
+	* testsuite/gas/rx/dmov.d: New.
+	* testsuite/gas/rx/dmov.sm: New.
+	* testsuite/gas/rx/dmul.d: New.
+	* testsuite/gas/rx/dmul.sm: New.
+	* testsuite/gas/rx/dneg.d: New.
+	* testsuite/gas/rx/dneg.sm: New.
+	* testsuite/gas/rx/dpopm.d: New.
+	* testsuite/gas/rx/dpopm.sm: New.
+	* testsuite/gas/rx/dpushm.d: New.
+	* testsuite/gas/rx/dpushm.sm: New.
+	* testsuite/gas/rx/dround.d: New.
+	* testsuite/gas/rx/dround.sm: New.
+	* testsuite/gas/rx/dsqrt.d: New.
+	* testsuite/gas/rx/dsqrt.sm: New.
+	* testsuite/gas/rx/dsub.d: New.
+	* testsuite/gas/rx/dsub.sm: New.
+	* testsuite/gas/rx/dtoX.d: New.
+	* testsuite/gas/rx/dtoX.sm: New.
+	* testsuite/gas/rx/macros.inc: Add double FPU registers.
+	* testsuite/gas/rx/mvfdc.d: New.
+	* testsuite/gas/rx/mvfdc.sm: New.
+	* testsuite/gas/rx/mvfdr.d: New.
+	* testsuite/gas/rx/mvfdr.sm: New.
+	* testsuite/gas/rx/mvtdc.d: New.
+	* testsuite/gas/rx/mvtdc.sm: New.
+	* testsuite/gas/rx/rstr.d: New.
+	* testsuite/gas/rx/rstr.sm: New.
+	* testsuite/gas/rx/rx.exp: Use rxv3-dfpu option.
+	* testsuite/gas/rx/save.d: New.
+	* testsuite/gas/rx/save.sm: New.
+	* testsuite/gas/rx/xor.d: New.
+	* testsuite/gas/rx/xor.sm: Add pattern.
+
+2019-01-04  Wu Heng  <wu.heng@zte.com.cn>
+
+	PR 24010
+	* macro.c (get_any_string): Check for end of input whilst scanning
+	for separators.
+
+2019-01-04  Wu Heng  <wu.heng@zte.com.cn>
+
+	PR 24009
+	* read.c (stringer): Fix handling of missing '>' character at end
+	of <...> sequence.
+
+2019-01-01  Alan Modra  <amodra@gmail.com>
+
+	Update year range in copyright notice of all files.
+
+For older changes see ChangeLog-2018
+
+Copyright (C) 2019 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Local Variables:
+mode: change-log
+left-margin: 8
+fill-column: 74
+version-control: never
+End:

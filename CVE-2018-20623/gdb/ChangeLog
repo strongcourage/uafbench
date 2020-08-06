@@ -1,0 +1,368 @@
+2019-01-08  Tom Tromey  <tom@tromey.com>
+	    Simon Marchi  <simon.marchi@ericsson.com>
+
+	PR gdb/24060
+	* ada-exp.y (DOLLAR_VARIABLE): Rename from SPECIAL_VARIABLE.
+	* ada-lex.l (DOLLAR_VARIABLE): Likewise.
+	* c-exp.y (DOLLAR_VARIABLE): Rename from VARIABLE.
+	* f-exp.y (DOLLAR_VARIABLE): Likewise.
+	* m2-exp.y (DOLLAR_VARIABLE): Rename from INTERNAL_VAR.
+	* p-exp.y (DOLLAR_VARIABLE): Rename from VARIABLE.
+
+2019-01-08  Andrew Burgess  <andrew.burgess@embecosm.com>
+
+	* source.c (select_source_symtab): Move header comment to
+	declaration in source.h.
+	(forget_cached_source_info_for_objfile): Likewise.
+	(forget_cached_source_info): Likewise.
+	(identify_source_line): Likewise.
+	* source.h (identify_source_line): Move declaration from symtab.h
+	and add comment from source.c
+	(print_source_lines): Likewise.
+	(forget_cached_source_info_for_objfile): Likewise.
+	(forget_cached_source_info): Likewise.
+	(select_source_symtab): Likewise.
+	(enum print_source_lines_flag): Move definition from symtab.h.
+	* symtab.h (identify_source_line): Move declaration to source.h.
+	(print_source_lines): Likewise.
+	(forget_cached_source_info_for_objfile): Likewise.
+	(forget_cached_source_info): Likewise.
+	(select_source_symtab): Likewise.
+	(enum print_source_lines_flag): Move definition to source.h.
+	* tui/tui-hooks.c: Add 'source.h' include.
+
+2019-01-08  Andrew Burgess  <andrew.burgess@embecosm.com>
+
+	* source.c (print_source_lines_base): Handle requests to print
+	reverse line number sequences, and guard against empty lines
+	string.
+
+2019-01-08  Andrew Burgess  <andrew.burgess@embecosm.com>
+
+	* source.c (print_source_lines_base): Fix skip of '\r' if next
+	character is '\n'.
+
+2019-01-06  Tom Tromey  <tom@tromey.com>
+
+	* c-exp.y (struct c_parse_state) <macro_original_text,
+	expansion_obstack>: New member.
+	(macro_original_text, expansion_obstack): Remove globals.
+	(scan_macro_expansion, scanning_macro_expansion)
+	(finished_macro_expansion): Update.
+	(scan_macro_cleanup): Remove.
+	(yylex, c_parse): Update.
+
+2019-01-06  Tom Tromey  <tom@tromey.com>
+
+	* c-exp.y (struct c_parse_state) <strings>: New member.
+	(operator_stoken): Update.
+
+2019-01-06  Tom Tromey  <tom@tromey.com>
+
+	* parser-defs.h (type_ptr): Remove typedef.  Don't declare VEC.
+	(union type_stack_elt) <typelist_val>: Now a pointer to
+	std::vector.
+	(type_stack_cleanup): Don't declare.
+	(push_typelist): Update.
+	* parse.c (pop_typelist): Return a std::vector.
+	(push_typelist): Take a std::vector.
+	(follow_types): Update.  Do not free args.
+	(type_stack_cleanup): Remove.
+	* c-exp.y (struct c_parse_state): New.
+	(cpstate): New global.
+	(type_aggregate_p, exp, ptr_operator, parameter_typelist)
+	(nonempty_typelist): Update.
+	(func_mod): Create a new vector.
+	(c_parse): Create a c_parse_state.
+	(check_parameter_typelist): Do not delete params.
+	(function_method): Update.  Do not delete type_list.
+
+2019-01-06  Tom Tromey  <tom@tromey.com>
+
+	PR gdb/28155:
+	* python/py-finishbreakpoint.c (bpfinishpy_init): Use
+	check_typedef.
+	* infcmd.c (finish_command_fsm_should_stop): Use check_typedef.
+	(print_return_value): Likewise.
+
+2019-01-05  Tom Tromey  <tom@tromey.com>
+
+	* contrib/cleanup_check.py: Remove.
+	* contrib/gcc-with-excheck: Remove.
+	* contrib/exsummary.py: Remove.
+	* contrib/excheck.py: Remove.
+
+2019-01-05  Joel Brobecker  <brobecker@adacore.com>
+
+	* thread.c (delete_thread_1): Add gdb_assert that THR is not
+	NULL. Initialize tpprev to NULL instead of assigning it
+	to NULL on the next statement.
+	* windows-nat.c (windows_delete_thread): Remove check for
+	main_thread_id before printing thread exit notifications.
+	(get_windows_debug_event) <EXIT_THREAD_DEBUG_EVENT>:
+	Remove thread ID check against main_thread_id.
+	<CREATE_PROCESS_DEBUG_EVENT>: Remove call to
+	windows_delete_thread.
+	<EXIT_PROCESS_DEBUG_EVENT>: Add call to windows_delete_thread.
+
+2019-01-04  Tom Tromey  <tom@tromey.com>
+
+	* compile/compile.c (_initialize_compile): Use upper case for
+	metasyntactic variables.
+	* symmisc.c (_initialize_symmisc): Use upper case for
+	metasyntactic variables.
+	* psymtab.c (_initialize_psymtab): Use upper case for
+	metasyntactic variables.
+	* demangle.c (demangle_command): Use upper case for metasyntactic
+	variables.
+	(_initialize_demangler): Likewise.
+	* ax-gdb.c (_initialize_ax_gdb): Use upper case for metasyntactic
+	variables.
+
+2019-01-03  Tom Tromey  <tom@tromey.com>
+
+	* tui/tui-source.c (tui_set_source_content): Use xstrdup.
+
+2019-01-03  Tom Tromey  <tom@tromey.com>
+
+	* python/py-symtab.c (salpy_str): Update.
+	(struct salpy_sal_object) <symtab>: Now a PyObject.
+	(salpy_dealloc): Update.
+	(del_objfile_sal): Use gdbpy_ref.
+
+2019-01-03  Tom Tromey  <tom@tromey.com>
+
+	* python/py-type.c (convert_field): Use new_reference.  Return
+	gdbpy_ref.
+	(make_fielditem): Return gdbpy_ref.
+	(typy_fields): Update.
+	(typy_getitem): Update.
+	(field_name): Return gdbpy_ref.  Use new_reference.
+	(typy_iterator_iternext): Update.
+
+2019-01-03  Tom Tromey  <tom@tromey.com>
+
+	* python/py-record.c (gdbpy_stop_recording): Use Py_RETURN_NONE.
+
+2019-01-03  Tom Tromey  <tom@tromey.com>
+
+	* python/py-value.c (valpy_dealloc): Use Py_XDECREF.
+	* python/py-type.c (typy_fields_items): Use gdbpy_ref.
+	* python/py-progspace.c (pspy_set_printers): Use gdbpy_ref.
+	(pspy_set_frame_filters, pspy_set_frame_unwinders)
+	(pspy_set_type_printers): Likewise.
+	* python/py-function.c (fnpy_init): Use gdbpy_ref.
+	* python/py-cmd.c (cmdpy_init): Use gdbpy_ref.
+	* python/py-objfile.c (objfpy_set_printers): Use gdbpy_ref.
+	(objfpy_set_frame_filters, objfpy_set_frame_unwinders)
+	(objfpy_set_type_printers): Likewise.
+
+2019-01-03  Tom Tromey  <tom@tromey.com>
+
+	* python/python.c (gdbpy_enter, ~gdbpy_enter): Update.
+	(gdbpy_print_stack): Use gdbpy_err_fetch.
+	* python/python-internal.h (class gdbpy_err_fetch): New class.
+	(class gdbpy_enter) <m_error_type, m_error_value,
+	m_error_traceback>: Remove.
+	<m_error>: New member.
+	(gdbpy_exception_to_string): Don't declare.
+	* python/py-varobj.c (py_varobj_iter_next): Use gdbpy_err_fetch.
+	* python/py-value.c (convert_value_from_python): Use
+	gdbpy_err_fetch.
+	* python/py-utils.c (gdbpy_err_fetch::to_string): Rename from
+	gdbpy_exception_to_string.
+	(gdbpy_handle_exception): Use gdbpy_err_fetch.
+	* python/py-prettyprint.c (print_stack_unless_memory_error): Use
+	gdbpy_err_fetch.
+
+2019-01-03  Andrew Burgess  <andrew.burgess@embecosm.com>
+
+	* linux-nat.c (delete_lwp_cleanup): Delete.
+	(struct lwp_deleter): New struct.
+	(lwp_info_up): New typedef.
+	(linux_nat_target::follow_fork): Delete cleanup, and make use of
+	lwp_info_up.
+
+2019-01-03  Andrew Burgess  <andrew.burgess@embecosm.com>
+
+	* linux-fork.c (class scoped_switch_fork_info): New class.
+	(inferior_call_waitpid): Update to use scoped_switch_fork_info.
+
+2019-01-03  Andrew Burgess  <andrew.burgess@embecosm.com>
+
+	* valops.c (find_overload_match): Remove use of null_cleanup, and
+	calls to do_cleanups.
+
+2019-01-03  Andrew Burgess  <andrew.burgess@embecosm.com>
+
+	* compile/compile-cplus-types.c
+	(compile_cplus_instance::decl_name): Handle changes to
+	cp_func_name.
+	* cp-support.c (cp_func_name): Update header comment, update
+	return type.
+	* cp-support.h (cp_func_name): Update return type in declaration.
+	* valops.c (find_overload_match): Move temp_func local to top
+	level of function and change its type.  Use temp_func to hold and
+	delete temporary string obtained from cp_func_name.
+
+2019-01-03  Andrew Burgess  <andrew.burgess@embecosm.com>
+
+	* remote.c (remote_target::remote_check_symbols): Convert `msg` to
+	gdb::char_vector, remove cleanup, and update uses of `msg`.
+
+2019-01-03  Jim Wilson  <jimw@sifive.com>
+
+	* riscv-tdep.c (riscv_freg_feature): Drop s0 name from f8.
+
+2019-01-02  Tom Tromey  <tom@tromey.com>
+
+	* xml-tdesc.c (xml_cache): Hold a target_desc_up.
+	(tdesc_parse_xml): Remove cleanups.
+	* target-descriptions.h (make_cleanup_free_target_description):
+	Don't declare.
+	(target_desc_deleter): New struct.
+	(target_desc_up): New typedef.
+	* target-descriptions.c (target_desc_deleter::operator()): Rename
+	from free_target_description.
+	(make_cleanup_free_target_description): Remove.
+
+2019-01-02  Tom Tromey  <tom@tromey.com>
+
+	* linespec.c (struct linespec_parser): Rename from ls_parser.  Add
+	constructor, destructor.
+	(linespec_parser): Remove typedef.
+	(~linespec_parser): Rename from linespec_parser_delete.
+	(linespec_lex_to_end, linespec_complete_label)
+	(linespec_complete): Update.
+	(decode_line_full): Remove cleanups.
+	(decode_line_1): Update.
+
+2019-01-02  Tom Tromey  <tom@tromey.com>
+
+	* python/python-internal.h (inferior_to_inferior_object): Change
+	return type.
+	* python/py-exitedevent.c (create_exited_event_object): Update.
+	* python/py-inferior.c (inferior_to_inferior_object): Return
+	gdbpy_ref.
+	(python_new_inferior, python_inferior_deleted)
+	(thread_to_thread_object, delete_thread_object)
+	(build_inferior_list, gdbpy_selected_inferior): Update.
+	* python/py-infthread.c (create_thread_object): Update.  Also fail
+	if inferior_to_inferior_object fails.
+
+2019-01-02  Simon Marchi  <simon.marchi@ericsson.com>
+
+	* inferior.h (class inferior) <displaced_step_state>: New field.
+	* infrun.h (struct displaced_step_state): Move here from
+	infrun.c.  Initialize fields, add constructor.
+	<inf>: Remove field.
+	<reset>: New method.
+	* infrun.c (struct displaced_step_inferior_state): Move to
+	infrun.h.
+	(displaced_step_inferior_states): Remove.
+	(get_displaced_stepping_state): Adust.
+	(displaced_step_in_progress_any_inferior): Adjust.
+	(displaced_step_in_progress_thread): Adjust.
+	(displaced_step_in_progress): Adjust.
+	(add_displaced_stepping_state): Remove.
+	(get_displaced_step_closure_by_addr): Adjust.
+	(remove_displaced_stepping_state): Remove.
+	(infrun_inferior_exit): Call displaced_step_state.reset.
+	(use_displaced_stepping): Don't check for NULL.
+	(displaced_step_prepare_throw): Call
+	get_displaced_stepping_state.
+	(displaced_step_fixup): Don't check for NULL.
+	(prepare_for_detach): Don't check for NULL.
+
+2019-01-02  Philippe Waroquiers  <philippe.waroquiers@skynet.be>
+
+	* infcall.c (call_function_by_hand_dummy): cleanup/destroy sm
+	 in case of call that did not complete.
+
+2019-01-02  Andrey Utkin  <autkin@undo.io>
+
+	* symfile.c (find_separate_debug_file): Fix search of debug files for
+	remote debuggee.
+
+2019-01-02  Tom Tromey  <tom@tromey.com>
+
+	* python/py-inferior.c (gdbpy_initialize_inferior): Fix
+	indentation.
+	* python/py-frame.c (frapy_older): Remove cast.
+	(frapy_newer): Likewise.
+	* python/py-breakpoint.c (local_setattro): Remove cast.
+	* python/py-arch.c (archpy_name): Remove local variable.
+	* python/py-type.c (gdbpy_lookup_type): Remove cast.
+
+2019-01-02  Joel Brobecker  <brobecker@adacore.com>
+
+	* unittests/basic_string_view/element_access/char/empty.cc:
+	Fix year range in copyright header.
+
+2019-01-01  Andrew Burgess  <andrew.burgess@embecosm.com>
+
+	* arch/riscv.h (struct riscv_gdbarch_features) <hw_float_abi>:
+	Delete.
+	<operator==>: Update with for removed field.
+	<hash>: Likewise.
+	* riscv-tdep.h (struct gdbarch_tdep) <features>: Renamed to...
+	<isa_features>: ...this.
+	<abi_features>: New field.
+	(riscv_isa_flen): Update comment.
+	(riscv_abi_xlen): New declaration.
+	(riscv_abi_flen): New declaration.
+	* riscv-tdep.c (riscv_isa_xlen): Update to get answer from
+	isa_features.
+	(riscv_abi_xlen): New function.
+	(riscv_isa_flen): Update to get answer from isa_features.
+	(riscv_abi_flen): New function.
+	(riscv_has_fp_abi): Update to get answer from abi_features.
+	(riscv_call_info::riscv_call_info): Use abi xlen and flen, not isa
+	xlen and flen.
+	(riscv_call_info) <xlen, flen>: Update comment.
+	(riscv_call_arg_struct): Remove invalid assertions
+	(riscv_features_from_gdbarch_info): Update now hw_float_abi field
+	is removed.
+	(riscv_gdbarch_init): Gather isa features and abi features
+	separately, ensure both match on the gdbarch when reusing an old
+	gdbarch.  Relax an error check to allow 32-bit abi float to run on
+	a target with 64-bit float hardware.
+
+2019-01-01  Philippe Waroquiers  <philippe.waroquiers@skynet.be>
+
+	* source.c (search_command_helper): Stop reverse search
+	when line 1 has been searched.
+
+2019-01-01  Philippe Waroquiers  <philippe.waroquiers@skynet.be>
+
+	* record-full.c (record_full_base_target::close): Rewrite
+	record_full_core_buf_list free logic.
+
+2019-01-01  Philippe Waroquiers  <philippe.waroquiers@skynet.be>
+
+	* break-catch-syscall.c (print_one_catch_syscall): xfree
+	the last text.
+
+2019-01-01  Joel Brobecker  <brobecker@adacore.com>
+
+	* top.c (print_gdb_version): Update Copyright year in version
+	message.
+
+2019-01-01  Joel Brobecker  <brobecker@adacore.com>
+
+	Update copyright year range in all GDB files.
+
+2019-01-01  Joel Brobecker  <brobecker@adacore.com>
+
+	* config/djgpp/fnchange.lst: Add entry for gdb/ChangeLog-2018.
+
+For older changes see ChangeLog-2018.
+
+Local Variables:
+mode: change-log
+left-margin: 8
+fill-column: 74
+version-control: never
+coding: utf-8
+End:
+

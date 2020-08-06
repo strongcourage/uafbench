@@ -1,0 +1,40 @@
+# Copyright (C) 2016 Free Software Foundation, Inc.
+#
+# Copying and distribution of this file, with or without modification,
+# in any medium, are permitted without royalty provided the copyright
+# notice and this notice are preserved.
+
+. $srcdir/test-lib.sh
+
+use_local_patch
+use_tmpdir
+
+# ==============================================================
+
+cat > ab.diff <<EOF
+*** a
+--- b
+***************
+*** 6 ****
+- b
+--- 5 ----
+EOF
+
+printf "%s\n" a a a a a b a a a a a > a
+check 'patch < ab.diff' <<EOF
+patching file a
+EOF
+
+cat > ab.diff <<EOF
+*** a
+--- b
+***************
+*** 11 ****
+- b
+--- 10 ----
+EOF
+
+printf "%s\n" a a a a a a a a a a b > a
+check 'patch < ab.diff' <<EOF
+patching file a
+EOF

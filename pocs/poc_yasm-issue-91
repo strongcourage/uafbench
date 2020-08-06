@@ -1,0 +1,2 @@
+d equ 0
+cmp[ax*4*d]

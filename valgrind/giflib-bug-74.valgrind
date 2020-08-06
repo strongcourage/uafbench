@@ -1,0 +1,12 @@
+==22424== Invalid read of size 4
+==22424==    at 0x804BEAB: EGifCloseFile (egif_lib.c:764)
+==22424==    by 0x80489B1: main (gifsponge.c:77)
+==22424==  Address 0x4239d10 is 72 bytes inside a block of size 76 free'd
+==22424==    at 0x402D358: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==22424==    by 0x804BFDD: EGifCloseFile (egif_lib.c:802)
+==22424==    by 0x804C96C: EGifSpew (egif_lib.c:1144)
+==22424==    by 0x8048964: main (gifsponge.c:72)
+==22424==  Block was alloc'd at
+==22424==    at 0x402C17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==22424==    by 0x804AE31: EGifOpenFileHandle (egif_lib.c:92)
+==22424==    by 0x80488A4: main (gifsponge.c:44)

@@ -1,0 +1,14 @@
+2018-03-18  Jose E. Marchesi  <jemarch@gnu.org>
+
+	* POTFILES.in: Updated.
+
+2018-03-17  Jose E. Marchesi  <jemarch@gnu.org>
+
+	* POTFILES.in: recreate after last gettexttize.
+
+2018-03-17  gettextize  <bug-gnu-gettext@gnu.org>
+
+	* Makefile.in.in: Upgrade to gettext-0.19.8.1.
+	* Rules-quot: Upgrade to gettext-0.19.8.1.
+	* POTFILES.in: New file.
+

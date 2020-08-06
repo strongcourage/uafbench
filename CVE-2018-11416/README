@@ -1,0 +1,100 @@
+
+Jpegoptim v1.4.5 - Copyright (C)  Timo Kokkonen, 1996-2018. All Rights Reserved.
+
+
+REQUIREMENTS
+	Independent JPEG Group's jpeg library (libjpeg) version 6b or later.
+	(Alternatively should also work with libjpeg-turbo or mozjpeg)
+
+
+TESTED PLATFORMS
+	Linux
+	Solaris 
+	Darwin/OS X j
+	Windows (setargv.obj "link option" may be needed for wildcards expansion to work)
+
+
+INSTALLATION
+	Installation should be very straightforward, just unpack the
+	tar file, make necessary changes to the Makefile,  and then 
+        compile the program. You may wanna do something like this:
+
+		zcat jpegoptim-1.4.5.tar.gz | tar xf -
+		cd jpegoptim-1.4.5
+		./configure
+		make
+		make strip
+		make install
+
+
+HISTORY
+	v1.4.5 - fix --overwrite option,
+                 better error reporting for -d option,
+                 fix memcmp() potentially reading past end of buffer,
+                 some minor fixes
+	v1.4.4 - more detailed error messages (thanks to Denis Fateyev),
+                 CMake support (thanks to Ghostkeeper),
+                 other minor fixes
+	v1.4.3 - fix bug that could cause jpegoptim crash when processing
+		 certain jpeg files
+        v1.4.2 - add option -P, --preserve-perms,
+                 some minor fixes
+        v1.4.1 - fix --stdin option (assume -f when reading from stdin),
+		 workaround to bug in libjpeg-turboi (v1.3.1) triggered
+		 when option -V or --version was used,
+                 other minor fixes
+	v1.4.0 - use memory (instead of temporary files) during optimization,
+		 support for reading input from stdin (and sending output to
+                 stdout), 
+		 report also libjpeg version when --version option used,
+		 new option --strip-none to preserve "all" markers,
+		 other minor fixes & cleanup
+	v1.3.1 - XMP marker support and new --csv option (by Matteo Croce),
+		 use DESTDIR instead of INSTALL_ROOT (by Samuli Suominen),
+		 changes to make compiling under Win32 and Win64
+		 easier (thanks to Javier Gutiérrez),
+                 preserve permissions of files being optimized,
+                 skip symlinks (and other special files),
+                 other minor fixes
+        v1.3.0 - support for progressive jpegs added (fixes long standing
+                 "bug" of progressive jpegs becoming non-progressive during
+                 optimization), 
+                 new options --all-normal & --all-progressive for
+                 converting jpegs to non-progressive & progressive,
+                 new -S / --size option to set target size for output
+                 file (enables lossy optimization),
+		 updated GPL/Copyrights language (thanks to Nicolas Vieville)
+	v1.2.5 - safer temp file handling (if mkstemps() available),
+		 patch to make "quiet mode" (-q) be quiet by Mathieu Malaterre
+	v1.2.4 - new -T / --threshold option by Matteo Croce,
+		 minor fixes (potential memory leaks),
+		 merged some patches from Debian jpegoptim package (1.2.3-2)
+	v1.2.3 - IPTC marker support by Dustin Ward,
+		 ICC profile support by Dwight Kelly,
+		 minor fixes 
+	v1.2.2 - Now Exif and COM markers are not discarded
+                 (all other markers are discarded as before).
+	         New options --strip-all, --strip-exif, and --strip-com
+	         added for controlling what markers to strip.
+	v1.2.1 - fixed buggy temp file handling
+	v1.2.0 - Added new options --overwrite and --preserve.
+		 GNU autoconf support added, also.
+	v1.1   - new -f option, and other minor changes, improved
+	 	 support for other platforms
+	v1.0a  - some changes in docs & makefile
+	v1.0   - first public release
+
+
+
+LATEST VERSION
+
+	Latest version is always available from:
+		http://www.iki.fi/tjko/projects.html
+
+	Sources (GIT)
+		https://github.com/tjko/jpegoptim
+
+
+Timo <tjko@iki.fi>
+30-Mar-2018  $Id$
+
