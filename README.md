@@ -23,6 +23,12 @@ $UAFBENCH_PATH/CVE-2018-20623.sh uafuzz 60 $UAFBENCH_PATH/valgrind/CVE-2018-2062
 $UAFBENCH_PATH/CVE-2019-20633.sh uafuzz 360 $UAFBENCH_PATH/valgrind/CVE-2018-6952.valgrind
 ~~~
 
+You can also fuzz without IDA Pro by specifying the argument `--no_ida` in the Python scripts. In this case, existing Ida files and call graphs in the folder [/ida](./ida) will be used. For example, the last two commands in [CVE-2019-20633.sh](./CVE-2019-20633.sh) should be updated as follows:
+~~~bash
+$UAFUZZ_PATH/scripts/preprocess.py --no_ida -f $PUT -v $targets -o $FUZZ_DIR
+$UAFUZZ_PATH/scripts/run_uafuzz.py --no_ida -f $FUZZ_DIR/$PUT -M fuzz -i $FUZZ_DIR/in -o run -r "$FUZZ_DIR/$PUT -Rf" -I $runmode -T "$FUZZ_DIR/$PUT.tgt" -to $timeout
+~~~
+
 | Bug ID            | Program           |  Type   | Crash | Command | Files   |
 |:-----------------:|:-----------------:|:-------:|:-----:|:-------:|:-------:|
 | CVE-2018-20623 | readelf (923c6a7) | UAF | :x: | `readelf -a @@` | [PoC](./pocs/poc_CVE-2018-20623), [Traces](./valgrind/CVE-2018-20623.valgrind), [Fuzzing script](CVE-2018-20623.sh) |
